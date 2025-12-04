@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+.week-selector-container {
+    text-align: center;
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.week-selector-container label {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#weekSelector {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: 2px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+.drive-controls-container {
+    text-align: center;
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.drive-nav-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #1a5f3f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.drive-nav-btn:hover {
+    background-color: #0d3a23;
+}
+
+.drive-nav-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.drive-counter {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    min-width: 150px;
+}
+
+.fields-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.field-wrapper {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.field-title {
+    background-color: #1a5f3f;
+    color: white;
+    padding: 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.scoreboard {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-weight: bold;
+}
+
+.score-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.team-label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    opacity: 0.9;
+}
+
+.score-value {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.scores-separator {
+    font-size: 2em;
+    margin: 0 10px;
+    opacity: 0.7;
+}
+
+.football-field {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2.5 / 1;
+    background: linear-gradient(90deg, #2d5a2d 0%, #1a4d1a 50%, #2d5a2d 100%);
+    border: 3px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.endzone {
+    position: absolute;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.endzone.left {
+    left: 0;
+}
+
+.endzone.right {
+    right: 0;
+}
+
+.yard-lines-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+.yard-line {
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background-color: white;
+    opacity: 0.7;
+}
+
+.yard-line-label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: bold;
+    font-size: 0.7em;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 3px 6px;
+    border-radius: 3px;
+}
+
+.yard-line:nth-child(1) { left: 10%; }
+.yard-line:nth-child(2) { left: 20%; }
+.yard-line:nth-child(3) { left: 30%; }
+.yard-line:nth-child(4) { left: 40%; }
+.yard-line:nth-child(5) { left: 50%; }
+.yard-line:nth-child(6) { left: 60%; }
+.yard-line:nth-child(7) { left: 70%; }
+.yard-line:nth-child(8) { left: 80%; }
+.yard-line:nth-child(9) { left: 90%; }
+
+.spot-marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
+    z-index: 10;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+.spot-marker.start {
+    background-color: #00ff00;
+}
+
+.spot-marker.end {
+    background-color: #ff0000;
+    animation: none;
+}
+
+.spot-marker.end.animating {
+    animation: moveDot 3s ease-in-out forwards;
+}
+
+@keyframes moveDot {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.game-info {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.game-info.show {
+    opacity: 1;
+}
+
+.touchdown-banner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ff0000;
+    padding: 20px 40px;
+    border-radius: 8px;
+    font-size: 2.5em;
+    font-weight: bold;
+    z-index: 20;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    opacity: 0;
+    animation: none;
+    transition: opacity 0.3s ease-in;
+}
+
+.touchdown-banner.show {
+    opacity: 1;
+    animation: pulse 0.6s ease-in-out;
+}
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.game-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+.game-info-row {
+    margin-bottom: 12px;
+    font-size: 0.95em;
+}
+
+.game-info-row strong {
+    color: #333;
+}
+
+.game-info-row span {
+    color: #666;
+}
+
+.scoring-play-info {
+    background-color: #fffacd;
+    border-left: 4px solid #ffd700;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.scoring-play-info strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #1a5f3f;
+}
+
+.no-games-message {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+    .fields-container {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .touchdown-banner {
+        font-size: 1.8em;
+        padding: 15px 30px;
+    }
+}

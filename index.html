@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercyhurst Football Season Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Mercyhurst Football Season Viewer</h1>
+        
+        <div class="week-selector-container">
+            <label for="weekSelector">Please select the week of Mercyhurst football's season you would like to view!</label>
+            <select id="weekSelector">
+                <option value="">-- Select a Week --</option>
+            </select>
+        </div>
+
+        <div id="driveControlsContainer" class="drive-controls-container" style="display: none;">
+            <button id="prevDriveBtn" class="drive-nav-btn">← Previous Drive</button>
+            <span id="driveCounter" class="drive-counter">Drive 1 of 1</span>
+            <button id="nextDriveBtn" class="drive-nav-btn">Next Drive →</button>
+        </div>
+
+        <div id="fieldsContainer" class="fields-container">
+            <!-- Fields will be dynamically generated here -->
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
