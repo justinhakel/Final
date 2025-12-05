@@ -1,0 +1,72 @@
+Welcome to my final project for CIS105 - Football Analytics
+
+1. Overview 
+- The objective of this project is to analyze mercyhursts Football
+season performance using their drives during their game and visualize
+how their drives turned out. Also to show distances of drives and see 
+from what distances the teams were most sucessful.
+
+2. Webscaping
+The data was scrapped from the mercyhurst football webpage
+1st scrape:
+#
+import requests
+from bs4 import BeautifulSoup
+url="https://hurstathletics.com/sports/football/schedule"
+page = requests.get(url).content
+soup = BeautifulSoup(page, 'html.parser')
+week_number = 1
+for url in urls:
+  page = requests.get(url).content
+  soup = BeautifulSoup(page, 'html.parser')
+  # Extract game-specific details
+  game_info_dict = {"Week Number": week_number}
+  game_info = soup.find_all('dl', class_ = "text-center inline")
+  if game_info:
+    headers = game_info[0].find_all('dt')
+    data_items = game_info[0].find_all('dd')
+    for header, item in zip(headers, data_items):
+      game_info_dict[header.text.strip().replace(':', '')] = item.text.strip()
+  # Extract scoring summary
+  table = soup.find_all('table', class_ = 'sidearm-table scoring-summary highlight-hover collapse-on-medium')
+  if table:
+    rows = table[0].find_all('tr')
+    for i in range(1, len(rows)):
+      scoring_play = rows[i].find_all('td')[3].text.strip()
+      # Combine game info with each scoring play
+      combined_entry = game_info_dict.copy()
+      combined_entry["Scoring Play"] = scoring_play
+      data.append(combined_entry)
+
+  week_number += 1
+
+  Second Scrape:
+  week_number = 1
+for url in urls:
+  page = requests.get(url).content
+  soup = BeautifulSoup(page, 'html.parser')
+  table = soup.find_all('table', class_ = 'sidearm-table overall-stats highlight-hover collapse-on-medium')
+  if table:
+    rows = table[0].find_all('tr')
+    for row in rows[2:]: # Start from row index 2 (the third row)
+      entry = {"Week Number": week_number}
+      tds = row.find_all('td', class_ = 'text-center')
+      for td in tds:
+        data_label = td.get('data-label', 'No Label')
+        text_content = td.text.strip()
+        entry[data_label] = text_content
+      game_drive_data.append(entry)
+  else:
+    print(f"No overall stats table found for week {week_number}")
+  week_number += 1
+
+  3. Database
+  on this page there is a queries.sql file that contains all the queries
+  used to create the database and tables along with inserting the data
+  scrapped from the webscraping step.
+
+  4. Webapp
+  The webapp requiers the user to select a week from the season and then
+  a field will appear showing a field and animate the drive distances
+  and outcomes for each drive. If the result was a TD it will show the scoring
+  information as well. 
